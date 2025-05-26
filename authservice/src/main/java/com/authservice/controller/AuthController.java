@@ -68,7 +68,8 @@ public class AuthController {
 			 Authentication authenticate = authManager.authenticate(token);
 			 
 			 if(authenticate.isAuthenticated()) {
-				 String jwtToken = jwtService.generateToken(loginDto.getUsername(),
+				 // authenticate.getName() is the verified user
+				 String jwtToken = jwtService.generateToken(authenticate.getName(),
 			                authenticate.getAuthorities().iterator().next().getAuthority());
 
 			            response.setMessage("Login Successful");
